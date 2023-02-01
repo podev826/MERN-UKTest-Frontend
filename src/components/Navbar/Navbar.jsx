@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { IsMobile } from '../deviceDetect';
-import { Link } from "react-router-dom";
+import { IsMobile } from '../DeviceDetect';
+
 
 // Navbar links
 const studyMaterials = [
