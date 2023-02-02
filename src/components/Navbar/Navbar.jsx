@@ -241,7 +241,7 @@ export default function Header() {
               </Linkcomponent>
 
               {/* About Us */}
-              <Linkcomponent title='About Us' link='/about-us'>
+              <Linkcomponent title='About Us' link='/aboutUs'>
               </Linkcomponent>
 
               {/* Contact Us */}

@@ -4,70 +4,18 @@ import { Textbox, Textarea } from 'react-inputs-validation';
 import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 
 const ContactUs = () => {
-  const [fields, setFields] = useState({});
-  const [errors, setErrors] = useState({});
-
-  const handleValidation = () => {
-    let formIsValid = true;
-
-    //Name
-    if (!fields["name"]) {
-      formIsValid = false;
-      setErrors({ ...errors, "name": "Cannot be empty" })
-    }
-
-    if (typeof fields["name"] !== "undefined") {
-      if (!fields["name"].match(/^[a-zA-Z]+$/)) {
-        formIsValid = false;
-        setErrors({ ...errors, "name": "Only letters" })
-      }
-    }
-
-    //Email
-    if (!fields["email"]) {
-      formIsValid = false;
-      setErrors({ ...errors, "email": "Cannot be empty" })
-    }
-
-    if (typeof fields["email"] !== "undefined") {
-      let lastAtPos = fields["email"].lastIndexOf("@");
-      let lastDotPos = fields["email"].lastIndexOf(".");
-
-      if (
-        !(
-          lastAtPos < lastDotPos &&
-          lastAtPos > 0 &&
-          fields["email"].indexOf("@@") == -1 &&
-          lastDotPos > 2 &&
-          fields["email"].length - lastDotPos > 2
-        )
-      ) {
-        formIsValid = false;
-        setErrors({ ...errors, "email": "Email is not valid" })
-      }
-    }
-
-    return formIsValid;
-  }
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [errors, setErrors] = useState({'name': false, 'email':false});
 
   const contactSubmit = (e) => {
+    console.log(errors);
     e.preventDefault();
-    if (handleValidation()) {
-      alert("Form submitted");
-    } else {
-      alert("Form has errors.");
-    }
-  }
-
-  const handleChange = (field, e) => {
-    console.log('filed', fields)
-    console.log('error', errors)
-    fields[field] = e.target.value
-    setFields(fields)
-    // setFields(fi)
-    console.log('state.fields:', fields)
-  }
-
+    if(Object.values(errors).indexOf(false) >= 0 || Object.values(errors).length == 0) alert("Validation error")
+    else alert("Form submitted");
+  };
   return (
     <div className="text-lg">
       <div className="bg-[#A8DADC] text-white p-2 lg:p-5">
@@ -83,65 +31,77 @@ const ContactUs = () => {
             className="contactform"
             onSubmit={e => contactSubmit(e)}
           >
-              <Textbox
-                    attributesInput={{
-                      // Optional.
-                      id: 'Name',
-                      name: 'Name',
-                      type: 'text',
-                      placeholder: 'Place your name here ^-^',
-                    }}
-                    value={name} // Optional.[String].Default: "".
-                    onChange={(name, e) => {
-                      this.setState({ name });
-                      console.log(e);
-                    }} // Required.[Func].Default: () => {}. Will return the value.
-                    onBlur={e => {
-                      console.log(e);
-                    }} // Optional.[Func].Default: none. In order to validate the value on blur, you MUST provide a function, even if it is an empty function. Missing this, the validation on blur will not work.
-                    validationOption={{
-                      name: 'Name', // Optional.[String].Default: "". To display in the Error message. i.e Please enter your {name}.
-                      check: true, // Optional.[Bool].Default: true. To determin if you need to validate.
-                      required: true, // Optional.[Bool].Default: true. To determin if it is a required field.
-                    }}
-                  />
-            <fieldset>
-              <input
-                type="text"
-                size="30"
-                placeholder="Name"
-                onChange={e => handleChange("name", e)}
-                value={fields["name"]}
-              />
-              <span style={{ color: "red" }}>{errors["name"]}</span>
-              <br />
-              <input
-                type="text"
-                size="30"
-                placeholder="Email"
-                onChange={e => handleChange("email", e)}
-                value={fields["email"]}
-              />
-              <span style={{ color: "red" }}>{errors["email"]}</span>
-              <br />
-              <input
-                type="text"
-                size="30"
-                placeholder="Phone"
-                onChange={e => handleChange("phone", e)}
-                value={fields["phone"]}
-              />
-              <br />
-              <input
-                type="text"
-                size="30"
-                placeholder="Address"
-                onChange={e => handleChange("address", e)}
-                value={fields["address"]}
-              />
-              <br />
-            </fieldset>
-            <button type="submit">submit</button>
+            <div className="flex flex-col">
+            <label htmlFor="Name" className="mt-4 text-base">Your Name (requried)</label>
+            <Textbox
+              classNameInput="text-gray-600 text-base px-3 py-3"
+              // classNameContainer="mt-2 lg:mt-3"
+              attributesInput={{ id: 'Name', name: 'Name', type: 'text' }}
+              value={name}
+              onChange={(name, e) => {
+                setName(name);
+              }}
+              onBlur={e => {}}
+              validationCallback={res => { errors['name'] = !res; setErrors(errors)}}
+              validationOption={{ name: 'Name', alphanumeric: true, required: true }}
+            />
+
+            <label htmlFor="Email" className="mt-4 text-base">Your Email (requried)</label>
+            <Textbox
+              classNameInput="text-gray-600 text-base px-3 py-3  border-gray-200 border w-full"
+              // classNameContainer="mt-2 lg:mt-3"
+              attributesInput={{ id: 'Email', name: 'email', type: 'text' }}
+              value={email}
+              onChange={(email, e) => {
+                setEmail(email)
+              }}
+              onBlur={e => {}}
+              validationCallback={res => { errors['email'] = !res; setErrors(errors)}}
+              validationOption={{ name: 'Email', type: 'string', required: true,
+              customFunc: email => {
+                const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (reg.test(String(email).toLowerCase())) {
+                  return true;
+                } else {
+                  return "Email address seems invalid";
+                }
+              } }}
+              
+            />
+
+            <label htmlFor="Subject" className="mt-4 text-base">Your Subject</label>
+            <Textbox
+              classNameInput="text-gray-600 text-base px-3 py-3"
+              // classNameContainer="mt-2 lg:mt-3"
+              attributesInput={{ id: 'Subject', name: 'subject', type: 'text' }}
+              value={subject}
+              onChange={(subject, e) => {
+                setSubject(subject);
+              }}
+              onBlur={e => {}}
+              validationCallback={res => { errors['subject'] = !res; setErrors(errors)}}
+              validationOption={{ name: 'Subject', check: false, required: false }}
+            />
+            <label htmlFor="Message" className="mt-4 text-base">Your Message</label>
+            <Textarea
+              classNameInput="text-gray-600 text-base px-3 py-3"
+              // classNameContainer="mt-2 lg:mt-3"
+              attributesInput={{ id: 'Message', name: 'message', type: 'text' }}
+              value={message}
+              onChange={(message, e) => {
+                setMessage(message);
+              }}
+              onBlur={e => {}}
+              validationCallback={res => { errors['message'] = !res; setErrors(errors)}}
+              validationOption={{ name: 'message', check: false, required: false }}
+            />
+<button
+        type="submit"
+        className="uppercase w-fit text-lg font-bold bg-[#A8DADC] \
+         text-white my-5 block rounded-full p-4 drop-shadow-2xl">
+        <span className="px-5">Submit</span>
+    </button>
+                </div>
           </form>
         </div>
         <div className="w-full md:w-1/3 min-w-60 md:pl-5 lg:pl-10 mt-5">
