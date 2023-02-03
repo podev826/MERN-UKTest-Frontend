@@ -28,7 +28,7 @@ const tests = [];
   let sublinks = [];
   for (let index = item.start; index <= item.end; index++) {
     sublinks.push({
-      href: "/test/" + index,
+      href: "/tests/" + index,
       label: "Test " + index
     })
   }
@@ -37,44 +37,44 @@ const tests = [];
 
 // Tests Links - chapters
 tests.push([
-  { href: "/test12", label: "Test 1.2" }])
+  { href: "/tests/1/1", label: "Test 1.2" }])
 tests.push([
-  { href: "/test3/1", label: "Test 3.1" },
-  { href: "/test3/2", label: "Test 3.2" },
-  { href: "/test3/3", label: "Test 3.3" },
-  { href: "/test3/4", label: "Test 3.4" },
-  { href: "/test3/5", label: "Test 3.5" },
-  { href: "/test3/6", label: "Test 3.6" },
-  { href: "/test3/7", label: "Test 3.7" },
-  { href: "/test3/8", label: "Test 3.8" },
-  { href: "/test3/9", label: "Test 3.9" },
-  { href: "/test3/10", label: "Test 3.10" }
+  { href: "/tests/3/1", label: "Test 3.1" },
+  { href: "/tests/3/2", label: "Test 3.2" },
+  { href: "/tests/3/3", label: "Test 3.3" },
+  { href: "/tests/3/4", label: "Test 3.4" },
+  { href: "/tests/3/5", label: "Test 3.5" },
+  { href: "/tests/3/6", label: "Test 3.6" },
+  { href: "/tests/3/7", label: "Test 3.7" },
+  { href: "/tests/3/8", label: "Test 3.8" },
+  { href: "/tests/3/9", label: "Test 3.9" },
+  { href: "/tests/3/10", label: "Test 3.10" }
 ])
 tests.push([
-  { href: "/test4/1", label: "Test 4.1" },
-  { href: "/test4/2", label: "Test 4.2" },
-  { href: "/test4/3", label: "Test 4.3" },
-  { href: "/test4/4", label: "Test 4.4" },
-  { href: "/test4/5", label: "Test 4.5" },
-  { href: "/test4/6", label: "Test 4.6" },
-  { href: "/test4/7", label: "Test 4.7" },
-  { href: "/test4/8", label: "Test 4.8" },
-  { href: "/test4/9", label: "Test 4.9" },
-  { href: "/test4/10", label: "Test 4.10" },
-  { href: "/test4/11", label: "Test 4.11" },
-  { href: "/test4/12", label: "Test 4.12" },
+  { href: "/tests/4/1", label: "Test 4.1" },
+  { href: "/tests/4/2", label: "Test 4.2" },
+  { href: "/tests/4/3", label: "Test 4.3" },
+  { href: "/tests/4/4", label: "Test 4.4" },
+  { href: "/tests/4/5", label: "Test 4.5" },
+  { href: "/tests/4/6", label: "Test 4.6" },
+  { href: "/tests/4/7", label: "Test 4.7" },
+  { href: "/tests/4/8", label: "Test 4.8" },
+  { href: "/tests/4/9", label: "Test 4.9" },
+  { href: "/tests/4/10", label: "Test 4.10" },
+  { href: "/tests/4/11", label: "Test 4.11" },
+  { href: "/tests/4/12", label: "Test 4.12" },
 ])
 tests.push([
-  { href: "/test5/1", label: "Test 5.1" },
-  { href: "/test5/2", label: "Test 5.2" },
-  { href: "/test5/3", label: "Test 5.3" },
-  { href: "/test5/4", label: "Test 5.4" },
-  { href: "/test5/5", label: "Test 5.5" },
-  { href: "/test5/6", label: "Test 5.6" },
-  { href: "/test5/7", label: "Test 5.7" },
-  { href: "/test5/8", label: "Test 5.8" },
-  { href: "/test5/9", label: "Test 5.9" },
-  { href: "/test5/10", label: "Test 5.10" },
+  { href: "/tests/5/1", label: "Test 5.1" },
+  { href: "/tests/5/2", label: "Test 5.2" },
+  { href: "/tests/5/3", label: "Test 5.3" },
+  { href: "/tests/5/4", label: "Test 5.4" },
+  { href: "/tests/5/5", label: "Test 5.5" },
+  { href: "/tests/5/6", label: "Test 5.6" },
+  { href: "/tests/5/7", label: "Test 5.7" },
+  { href: "/tests/5/8", label: "Test 5.8" },
+  { href: "/tests/5/9", label: "Test 5.9" },
+  { href: "/tests/5/10", label: "Test 5.10" },
 ])
 
 // Exam links

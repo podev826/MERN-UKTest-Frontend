@@ -18,8 +18,8 @@ export default function Donate() {
                     <input type="hidden" name="return" value="https://lifeintheuktestweb.co.uk/donations/" />
                     <input type="hidden" name="rm" value="0" />
                     <input type="hidden" name="currency_code" value="GBP" />
-                    <input type="image" style={{ cursor: "pointer" }} src="../images/btn_donate_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online." />
-                    <img alt="" src="../images/pixel.gif" width="1" height="1" />
+                    <input type="image" style={{ cursor: "pointer" }} src="/images/btn_donate_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online." />
+                    <img alt="" src="/images/pixel.gif" width="1" height="1" />
                 </div>
             </form>
 

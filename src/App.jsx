@@ -15,6 +15,8 @@ import Chapter2 from "./pages/Chapters/Chapter2";
 import Chapter3 from "./pages/Chapters/Chapter3";
 import Chapter4 from "./pages/Chapters/Chapter4";
 import Chapter5 from "./pages/Chapters/Chapter5";
+import Test from "./pages/Test";
+import Exam from "./pages/Exam";
 
 function App() {
   return (
@@ -24,7 +26,10 @@ function App() {
         <Route path="/aboutUs" element={<AboutUS />} />
         <Route path="/contactUs" element={<ContactUs />} />
         <Route path="/exams" element={<Exams />} />
+        <Route path="/exams/:testNum" element={<Exam />} />
         <Route path="/tests" element={<Tests />} />
+        <Route path="/tests/:testNum" element={<Test />} />
+        <Route path="/tests/:chapter/:testNum" element={<Test />} />
         <Route path="/studyMaterials" element={<StudyMaterials />} />
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
