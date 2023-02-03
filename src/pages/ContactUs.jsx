@@ -20,7 +20,7 @@ const ContactUs = () => {
     <div className="text-lg">
       <div className="bg-[#A8DADC] text-white p-2 lg:p-5">
         <h1 className="container text-2xl screen mx-auto px-5 font-bold">
-          Contact
+          Contact Us
         </h1>
       </div>
       <div className="container flex flex-col justify-between md:flex-row 

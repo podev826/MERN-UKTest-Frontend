@@ -84,3 +84,7 @@ h4 {
   padding-top: 0px;
   padding-bottom: 0px;
 }
+
+.ticket:hover span {
+  color: #A8DADC;
+}
