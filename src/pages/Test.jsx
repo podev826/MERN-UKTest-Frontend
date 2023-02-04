@@ -50,19 +50,19 @@ const test = {
     chapter: 0, testNum: 1, type: "Test", timelimit: 45, questions: [
         {
             question: "What color is the sea?",
-            choices: ["red", "blue", "green", "yello"],
+            choice: ["red", "blue", "green", "yellow"],
             answer: 1,
             description: "The sea is blue."
         },
         {
             question: "Where is the UK?",
-            choices: ["Asia", "Africa", "Europe", "North America", "South America"],
+            choice: ["Asia", "Africa", "Europe", "North America", "South America"],
             answer: 2,
             description: "The UK is in Europe."
         },
         {
             question: "Is the UK island?",
-            choices: ["yes", "no"],
+            choice: ["yes", "no"],
             answer: 0,
             description: "The UK is island."
         },
