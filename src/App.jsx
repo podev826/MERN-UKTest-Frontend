@@ -17,8 +17,26 @@ import Chapter4 from "./pages/Chapters/Chapter4";
 import Chapter5 from "./pages/Chapters/Chapter5";
 import Test from "./pages/Test";
 import Exam from "./pages/Exam";
+import Admin from "./pages/Admin";
+import { useEffect, useState } from "react";
+import TestPage from "./pages/TestPage";
 
 function App() {
+
+  const [tests, setTests] = useState([])
+
+
+  useEffect(() => {
+      fetch('https://crudmern.onrender.com/api/members')
+      .then(res => res.json())
+      .then(data => {
+          // console.log(data)
+          setTests(data)
+      }).catch(e => {
+          console.log(e)
+      }) 
+  }, [])
+
   return (
     <div className="relative">
       <Navbar />
@@ -34,6 +52,8 @@ function App() {
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
         <Route path="/faqs" element={<Faqs />} />
+        <Route path="/admin" element={<Admin tests={tests}/>} />
+        <Route path="/admin/test/:id" element={<TestPage />} />
         <Route
           path="/the-values-and-principles-of-the-uk"
           element={<Chapter1 />}
