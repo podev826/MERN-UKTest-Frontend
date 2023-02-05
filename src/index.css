@@ -837,6 +837,12 @@ html {
   color: rgb(168 218 220 / var(--tw-text-opacity));
 }
 
+/* admin page - edit input field */
+.editInputField {
+  background-color: #f4f4f4 !important; 
+  border-radius: 8px;
+}
+
 @media (min-width: 768px) {
   .md\:mt-4 {
     margin-top: 1rem;

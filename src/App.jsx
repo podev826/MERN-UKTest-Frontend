@@ -20,11 +20,12 @@ import Exam from "./pages/Exam";
 import Admin from "./pages/Admin";
 import { useEffect, useState } from "react";
 import TestPage from "./pages/TestPage";
+import CreateTest from "./pages/CreateTest";
 
 function App() {
 
   const [tests, setTests] = useState([])
-
+  const [chapters, setChapters] = useState([])
 
   useEffect(() => {
       fetch('https://crudmern.onrender.com/api/members')
@@ -36,6 +37,18 @@ function App() {
           console.log(e)
       }) 
   }, [])
+
+  // useEffect(() => {
+  //   let checkPrev = -1
+  //   tests.map(t => {
+  //     if(checkPrev === t.chapter){
+  //       return 0
+  //     }else {
+  //       checkPrev = t.chapter
+  //       return setChapters(chapters => [...chapters, t.chapter])
+  //     }
+  //   })
+  // }, [tests])
 
   return (
     <div className="relative">
@@ -52,8 +65,9 @@ function App() {
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
         <Route path="/faqs" element={<Faqs />} />
-        <Route path="/admin" element={<Admin tests={tests}/>} />
+        <Route path="/admin" element={<Admin tests={tests} chapters={chapters}/>} />
         <Route path="/admin/test/:id" element={<TestPage />} />
+        <Route path="/admin/createTest" element={<CreateTest />} />
         <Route
           path="/the-values-and-principles-of-the-uk"
           element={<Chapter1 />}
