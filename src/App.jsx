@@ -41,15 +41,19 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-      fetch('https://crudmern.onrender.com/api/members')
-      .then(res => res.json())
-      .then(data => {
-          // console.log(data)
-          setTests(data)
-      }).catch(e => {
-          console.log(e)
-      }) 
+    fetchOnLoad()
   }, [])
+
+  const fetchOnLoad =() => {
+    fetch('https://crudmern.onrender.com/api/members')
+    .then(res => res.json())
+    .then(data => {
+        // console.log(data)
+        setTests(data)
+    }).catch(e => {
+        console.log(e)
+    }) 
+  }
 
 
   useEffect(() => {
@@ -71,6 +75,7 @@ function App() {
       return res.json()
     }).then(data => {
       console.log(data)
+      fetchOnLoad()
       navigate('/admin')
     }).catch(e => {
       console.error(e)

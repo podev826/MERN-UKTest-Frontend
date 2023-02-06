@@ -17,7 +17,11 @@ const Admin = ({ tests, newTest, setNewTest, showLoader, setShowLoader }) => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    setData(() => tests.filter(test => test.chapter === parseInt(currentChapter)))
+    if(currentChapter === 'sortByChapter'){
+      setData(tests)
+    }else {
+      setData(() => tests.filter(test => test.chapter === parseInt(currentChapter)))
+    }
   }, [currentChapter, tests])
 
   useEffect(() => {
@@ -86,6 +90,7 @@ const Admin = ({ tests, newTest, setNewTest, showLoader, setShowLoader }) => {
 
       <div className="py-2 flex justify-between">
         <select name="selectChapter" className="px-2 py-1 border border-gray-300 rounded-md cursor-pointer" id="selectChapter" value={currentChapter} onChange={(e) => setCurrenChapter(e.target.value)}>
+          <option value="sortByChapter" selected>Sort By Chapter</option>
           <option value="1">Chapter 1</option>
           <option value="2">Chapter 2</option>
           <option value="3">Chapter 3</option>
