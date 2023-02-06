@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, json } from "react-router-dom";
 import Home from "./pages/Home";
 import AboutUS from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
@@ -21,34 +21,68 @@ import Admin from "./pages/Admin";
 import { useEffect, useState } from "react";
 import TestPage from "./pages/TestPage";
 import CreateTest from "./pages/CreateTest";
+import { useNavigate } from "react-router-dom";
 
 function App() {
 
   const [tests, setTests] = useState([])
   const [chapters, setChapters] = useState([])
+  const [newTest, setNewTest] = useState({
+    chapter: 0,
+    testNum: 0,
+    timelimit: 0,
+    questions: []
+  })
+
+  const [questions, setQuestions] = useState([])
+  const [isTestCreated, setIsTestCreated] = useState(false)
+  const [questionPushed, setQuestionPushed] = useState(false)
+  const [showLoader, setshowLoader] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
-      fetch('https://crudmern.onrender.com/api/members')
-      .then(res => res.json())
-      .then(data => {
-          // console.log(data)
-          setTests(data)
-      }).catch(e => {
-          console.log(e)
-      }) 
+    fetchOnLoad()
   }, [])
 
-  // useEffect(() => {
-  //   let checkPrev = -1
-  //   tests.map(t => {
-  //     if(checkPrev === t.chapter){
-  //       return 0
-  //     }else {
-  //       checkPrev = t.chapter
-  //       return setChapters(chapters => [...chapters, t.chapter])
-  //     }
-  //   })
-  // }, [tests])
+  const fetchOnLoad =() => {
+    fetch('https://crudmern.onrender.com/api/members')
+    .then(res => res.json())
+    .then(data => {
+        // console.log(data)
+        setTests(data)
+    }).catch(e => {
+        console.log(e)
+    }) 
+  }
+
+
+  useEffect(() => {
+    if(isTestCreated){
+      setNewTest({...newTest, questions: questions})
+      setQuestionPushed(true)
+    }
+  }, [isTestCreated])
+
+  const handleSave = () => {
+    console.log(newTest)
+    fetch('https://crudmern.onrender.com/api/members/add', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }, 
+      body: JSON.stringify(newTest)
+    }).then(res => {
+      return res.json()
+    }).then(data => {
+      console.log(data)
+      fetchOnLoad()
+      navigate('/admin')
+    }).catch(e => {
+      console.error(e)
+    })
+  }
+
+
 
   return (
     <div className="relative">
@@ -65,9 +99,9 @@ function App() {
         <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/termsAndConditions" element={<TermsAndConditions />} />
         <Route path="/faqs" element={<Faqs />} />
-        <Route path="/admin" element={<Admin tests={tests} chapters={chapters}/>} />
+        <Route path="/admin" element={<Admin tests={tests} newTest={newTest} setNewTest={setNewTest} showLoader={showLoader} setshowLoader={setshowLoader}/>} />
         <Route path="/admin/test/:id" element={<TestPage />} />
-        <Route path="/admin/createTest" element={<CreateTest />} />
+        <Route path="/admin/createTest" element={<CreateTest newTest={newTest} setNewTest={setNewTest} questions={questions} setQuestions={setQuestions} setIsTestCreated={setIsTestCreated} handleSave={handleSave} showLoader={showLoader} setshowLoader={setshowLoader}/>} />
         <Route
           path="/the-values-and-principles-of-the-uk"
           element={<Chapter1 />}
