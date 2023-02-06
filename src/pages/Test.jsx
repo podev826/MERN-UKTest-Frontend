@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import Donate from "../components/Donate";
 import TestRoom from "../components/TestRoom";
+import CommentBox from "../components/CommentBox";
 import Ticket from "../components/Ticket";
 const exams = [
     { chapter: 0, testNum: 1, type: "Exam" },
@@ -68,6 +69,38 @@ const test = {
         },
     ]
 }
+
+const comments = [
+    {
+        name: "Nadeem",
+        email: "Nadeem@email.com",
+        date: "February 1, 2023 at 10:52 pm",
+        content: "I passed my test today. I only practiced exams 1-16. I finished my test in 2 minutes and as soon as I came out even the test centre people were shocked that i broke a record for finishing the test in just 2 minutes. It was just because of this website that I was able to finish it that quick. I really appreciate you for making this website. Many Thanks",
+        comments: [
+            {
+                name: "Nadeem",
+                email: "Nadeem@email.com",
+                date: "February 1, 2023 at 10:52 pm",
+                content: "I passed my test today. I only practiced exams 1-16. I finished my test in 2 minutes and as soon as I came out even the test centre people were shocked that i broke a record for finishing the test in just 2 minutes. It was just because of this website that I was able to finish it that quick. I really appreciate you for making this website. Many Thanks",
+                comments: []
+            },
+            {
+                name: "Nadeem",
+                email: "Nadeem@email.com",
+                date: "February 1, 2023 at 10:52 pm",
+                content: "I passed my test today. I only practiced exams 1-16. I finished my test in 2 minutes and as soon as I came out even the test centre people were shocked that i broke a record for finishing the test in just 2 minutes. It was just because of this website that I was able to finish it that quick. I really appreciate you for making this website. Many Thanks",
+                comments: []
+            },
+        ]
+    },    
+    {
+        name: "Abbas",
+        email: "Abbas@email.com",
+        date: "February 4, 2023 at 7:52 pm",
+        content: "Passed ALHHUMDULLILAH Today 4th February 2023 at 11:00 it only took 4 mins Best website 1 to 16 exams and little bit of from 40 tests to master it for 24/24 I have got 💯 correct answers",
+        comments: []
+    },
+]
 const Test = () => {
     const params = useParams();
     console.log(params.chapter)
@@ -117,7 +150,10 @@ const Test = () => {
                             title={["British Citizenship Test", test.testNum].join(" ")}
                             to={["/exams", test.testNum].join("/")} />)}
                     </div>
-
+                    <p className="font-bold text-xl my-5">{`${comments.length} Comments`}</p>
+                    {comments.map(comment => 
+                    <CommentBox comment={comment} key={comment.name}/>
+                    )}
                 </div>
                 <div className="w-full md:w-1/3 min-w-60 md:pl-5 lg:pl-10 mt-5">
                     <Donate />

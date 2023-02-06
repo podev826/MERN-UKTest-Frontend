@@ -43,23 +43,23 @@ const Admin = ({ tests }) => {
               </div>
 
               <div className="py-2 px-6 mt-4">
-                <div class="grid gap-6 mb-6 md:grid-cols-3">
+                <div className="grid gap-6 mb-6 md:grid-cols-3">
                   <div>
-                    <label for="first_name" class="block mb-2 text-sm font-medium">Chapter Number</label>
-                    <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    <label htmlFor="first_name" className="block mb-2 text-sm font-medium">Chapter Number</label>
+                    <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                   </div>
                   <div>
-                    <label for="last_name" class="block mb-2 text-sm font-medium">Test Number</label>
-                    <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    <label htmlFor="last_name" className="block mb-2 text-sm font-medium">Test Number</label>
+                    <input type="text" id="last_name" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                   </div>
                   <div>
-                    <label for="company" class="block mb-2 text-sm font-medium">Time Limit</label>
-                    <input type="text" id="company" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    <label htmlFor="company" className="block mb-2 text-sm font-medium">Time Limit</label>
+                    <input type="text" id="company" className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                   </div>
                 </div>
-                <div class="mb-6">
-                  <label for="email" class="block mb-2 text-sm font-medium">Email address</label>
-                  <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required />
+                <div className="mb-6">
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium">Email address</label>
+                  <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required />
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
