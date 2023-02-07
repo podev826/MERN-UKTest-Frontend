@@ -26,6 +26,7 @@ export default function TestRoom(props) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [questions, setQuestions] = useState(props.test.questions)
     const [showReview, setShowReview] = useState(false)
+    const [average, setAverage] = useState(0)
 
     const toggleReview = () => {
         setShowReview(!showReview)
@@ -43,6 +44,33 @@ export default function TestRoom(props) {
             }, 1000)        
         }
     })
+    useEffect(()=>{
+        if(status==END) {
+            setMark(Math.floor(correctCount * 10000 / questions.length)/100)
+            let testStatus = JSON.parse(localStorage.getItem('testStatus'))??{}
+            console.log(testStatus)
+            if(testStatus && testStatus[props.test._id]) {
+                let old = testStatus[props.test._id]
+                setAverage(old.average)
+                old.testCount++
+                old.average = (old.average * (old.testCount - 1) + mark) /old.testCount
+                old.passed = passed
+                old.correctCount = correctCount
+                testStatus[props.test._id] = old
+                localStorage.setItem('testStatus', JSON.stringify(testStatus))   
+            }
+            else {
+                testStatus[props.test._id] = {
+                    testCount: 1,
+                    average: Math.floor(correctCount * 10000 / questions.length) /100,
+                    passed,
+                    correctCount,
+                    total: questions.length  
+                }
+                localStorage.setItem('testStatus', JSON.stringify(testStatus))
+            }
+        }
+    }, [status])
     return (
         <div>
             {status == START && (
@@ -71,17 +99,17 @@ export default function TestRoom(props) {
                     <p className="text-base mb-5">{`Your time: ${time.toHHMMSS()}`}</p>
                     <p className="text-base mb-5 text-center font-bold">
                         {`You have reached ${correctCount} of ${questions.length} \
-                        points, (${Math.floor(correctCount * 10000 / questions.length)/100}%)`}
+                        points, (${mark}%)`}
                     </p>
                     <table className="bg-ukwhite w-full lg:w-600 mx-auto mb-3 p-3 font-bold flex border border-gray-500">
                         <tbody className="w-full">
                             <tr className="pb-3">
                                 <td className="w-1/4 border-r border-gray-500 px-2">Average score</td>
-                                <td className="pl-0"><div className="bg-green-900 h-4" style={{ width: `${1 + correctCount * 99 / questions.length}%` }}></div></td>
+                                <td className="pl-0"><div className="bg-green-900 h-4" style={{ width: `${average}%` }}></div></td>
                             </tr>
                             <tr>
                                 <td className="w-1/4 border-r border-gray-500 px-2">Your score</td>
-                                <td className="pl-2">{`${Math.floor(correctCount * 10000 / questions.length)/100}%`}</td>
+                                <td className="pl-0 flex items-center"><div className="bg-yellow-700 h-4 mr-2" style={{ width: `${mark}%` }}></div>{`${mark}%`}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -50,6 +50,7 @@ const Tests = () => {
           <p className="text-2xl my-5">Tests by chapter</p>
           <div className="flex flex-wrap justify-start">
           {normalTests.map(test => <Ticket
+          _id={test._id}
           className="mx-2 my-2"
           title={"Life in the UK Test " + test.testNum}
           to={"/tests/" + test.testNum}/>)}          
@@ -58,6 +59,7 @@ const Tests = () => {
           <p className="text-2xl my-5">Life In the UK Tests</p>
           <div className="flex flex-wrap justify-start">
           {testsByChapter.map(test => <Ticket
+          _id={test._id}
           className="mx-2 my-2"
           title={["Chapter", test.chapter, "Test", test.testNum].join(" ") }
           to={[ "/tests", test.chapter, test.testNum].join("/")}/>)}          

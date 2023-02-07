@@ -93,6 +93,7 @@ const Exam = () => {
                     <p className="text-2xl text-center my-5">EXAMS</p>
                     <div className="flex flex-wrap justify-start">
                         {exams.map((exam, index) =><Ticket
+                            _id={exam._id}
                             key={index}
                             className="mx-2 my-2"
                             title={["British Citizenship Test", exam.testNum].join(" ")}

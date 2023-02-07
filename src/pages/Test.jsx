@@ -5,50 +5,50 @@ import TestRoom from "../components/TestRoom";
 import CommentBox from "../components/CommentBox";
 import Ticket from "../components/Ticket";
 const exams = [
-    { chapter: 0, testNum: 1, type: "Exam" },
-    { chapter: 0, testNum: 2, type: "Exam" },
-    { chapter: 0, testNum: 3, type: "Exam" },
-    { chapter: 0, testNum: 4, type: "Exam" },
-    { chapter: 0, testNum: 5, type: "Exam" },
-    { chapter: 0, testNum: 6, type: "Exam" },
-    { chapter: 0, testNum: 7, type: "Exam" },
-    { chapter: 0, testNum: 8, type: "Exam" },
-    { chapter: 0, testNum: 9, type: "Exam" },
-    { chapter: 0, testNum: 10, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 1, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 2, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 3, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 4, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 5, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 6, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 7, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 8, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 9, type: "Exam" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 10, type: "Exam" },
 ]
 const tests = [
-    { chapter: 0, testNum: 1, type: "Test" },
-    { chapter: 0, testNum: 2, type: "Test" },
-    { chapter: 0, testNum: 3, type: "Test" },
-    { chapter: 0, testNum: 4, type: "Test" },
-    { chapter: 0, testNum: 5, type: "Test" },
-    { chapter: 0, testNum: 6, type: "Test" },
-    { chapter: 0, testNum: 7, type: "Test" },
-    { chapter: 0, testNum: 8, type: "Test" },
-    { chapter: 0, testNum: 9, type: "Test" },
+    { _id: "asdfasdfqw124", chapter: 0, testNum: 1, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 2, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 3, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 4, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 5, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 6, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 7, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 8, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 0, testNum: 9, type: "Test" },
 
-    { chapter: 1, testNum: 1, type: "Test" },
-    { chapter: 1, testNum: 2, type: "Test" },
-    { chapter: 1, testNum: 3, type: "Test" },
-    { chapter: 1, testNum: 4, type: "Test" },
-    { chapter: 1, testNum: 5, type: "Test" },
-    { chapter: 1, testNum: 6, type: "Test" },
-    { chapter: 1, testNum: 7, type: "Test" },
-    { chapter: 1, testNum: 8, type: "Test" },
-    { chapter: 1, testNum: 9, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 1, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 2, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 3, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 4, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 5, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 6, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 7, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 8, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 1, testNum: 9, type: "Test" },
 
-    { chapter: 2, testNum: 1, type: "Test" },
-    { chapter: 2, testNum: 2, type: "Test" },
-    { chapter: 2, testNum: 3, type: "Test" },
-    { chapter: 2, testNum: 4, type: "Test" },
-    { chapter: 2, testNum: 5, type: "Test" },
-    { chapter: 2, testNum: 6, type: "Test" },
-    { chapter: 2, testNum: 7, type: "Test" },
-    { chapter: 2, testNum: 8, type: "Test" }
+    { _id: "asdfasdfasdf", chapter: 2, testNum: 1, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 2, testNum: 2, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 2, testNum: 3, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 2, testNum: 4, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 2, testNum: 5, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 2, testNum: 6, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 2, testNum: 7, type: "Test" },
+    { _id: "asdfasdfasdf", chapter: 2, testNum: 8, type: "Test" }
 ]
 
 const test = {
-    chapter: 0, testNum: 1, type: "Test", timelimit: 45, questions: [
+    _id: "asdfasdfqw124", chapter: 0, testNum: 1, type: "Test", timelimit: 45, questions: [
         {
             question: "What color is the sea?",
             choice: ["red", "blue", "green", "yellow"],
@@ -130,6 +130,7 @@ const Test = () => {
                     <p className="text-2xl text-center my-5">All Tests</p>
                     <div className="flex flex-wrap justify-start">
                         {normalTests.map((test, index) => <Ticket
+                            _id={test._id}
                             key={index}
                             className="mx-2 my-2"
                             title={"Life in the UK Test " + test.testNum}
@@ -139,6 +140,7 @@ const Test = () => {
                     <p className="text-2xl text-center my-5">Tests by Chapter</p>
                     <div className="flex flex-wrap justify-start">
                         {testsByChapters.map((test, index) => <Ticket
+                            _id={test._id}
                             key={index}
                             className="mx-2 my-2"
                             title={["Chapter", test.chapter, "Test", test.testNum].join(" ")}
@@ -148,10 +150,11 @@ const Test = () => {
                     <p className="text-2xl text-center my-5">EXAMS</p>
                     <div className="flex flex-wrap justify-start">
                         {exams.map((exam, index) => <Ticket
+                            _id={exam._id}
                             key={index}
                             className="mx-2 my-2"
-                            title={["British Citizenship Test", test.testNum].join(" ")}
-                            to={["/exams", test.testNum].join("/")} />)}
+                            title={["British Citizenship Test", exam.testNum].join(" ")}
+                            to={["/exams", exam.testNum].join("/")} />)}
                     </div>
                     <p className="font-bold text-xl my-5">{`${comments.length} Comments`}</p>
                     {comments.map((comment, index) => 
