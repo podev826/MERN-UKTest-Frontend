@@ -87,24 +87,24 @@ const examGroups = [
   }]
 const exams = [
   [
-    { href: "/exam/1", label: "British Citizenship\nTest 1" },
-    { href: "/exam/2", label: "British Citizenship\nTest 2" },
-    { href: "/exam/3", label: "British Citizenship\nTest 3" },
-    { href: "/exam/4", label: "British Citizenship\nTest 4" },
-    { href: "/exam/5", label: "British Citizenship\nTest 5" },
-    { href: "/exam/6", label: "British Citizenship\nTest 6" },
-    { href: "/exam/7", label: "British Citizenship\nTest 7" },
+    { href: "/exams/1", label: "British Citizenship\nTest 1" },
+    { href: "/exams/2", label: "British Citizenship\nTest 2" },
+    { href: "/exams/3", label: "British Citizenship\nTest 3" },
+    { href: "/exams/4", label: "British Citizenship\nTest 4" },
+    { href: "/exams/5", label: "British Citizenship\nTest 5" },
+    { href: "/exams/6", label: "British Citizenship\nTest 6" },
+    { href: "/exams/7", label: "British Citizenship\nTest 7" },
   ],
   [
-    { href: "/exam/8", label: "British Citizenship\nTest 8" },
-    { href: "/exam/9", label: "British Citizenship\nTest 9" },
-    { href: "/exam/10", label: "British Citizenship\nTest 10" },
-    { href: "/exam/11", label: "British Citizenship\nTest 11" },
-    { href: "/exam/12", label: "British Citizenship\nTest 12" },
-    { href: "/exam/13", label: "British Citizenship\nTest 13" },
-    { href: "/exam/14", label: "British Citizenship\nTest 14" },
-    { href: "/exam/15", label: "British Citizenship\nTest 15" },
-    { href: "/exam/16", label: "British Citizenship\nTest 16 New!" },
+    { href: "/exams/8", label: "British Citizenship\nTest 8" },
+    { href: "/exams/9", label: "British Citizenship\nTest 9" },
+    { href: "/exams/10", label: "British Citizenship\nTest 10" },
+    { href: "/exams/11", label: "British Citizenship\nTest 11" },
+    { href: "/exams/12", label: "British Citizenship\nTest 12" },
+    { href: "/exams/13", label: "British Citizenship\nTest 13" },
+    { href: "/exams/14", label: "British Citizenship\nTest 14" },
+    { href: "/exams/15", label: "British Citizenship\nTest 15" },
+    { href: "/exams/16", label: "British Citizenship\nTest 16 New!" },
   ]
 ]
 

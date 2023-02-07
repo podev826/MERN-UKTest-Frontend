@@ -47,7 +47,7 @@ export default function TestRoom(props) {
         <div>
             {status == START && (
                 <div className="flex flex-col">
-                    <span className="text-xl mb-4">{"Test " + props.test.testNum}</span>
+                    <span className="text-xl mb-4">{props.test.type + props.test.testNum}</span>
                     <button className="bg-sky-900 rounded-lg text-white w-fit px-3" onClick={e => setStatus(MIDDLE)}>Start quiz</button>
                 </div>
             )}
