@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Donate from "../components/Donate";
 import TestRoom from "../components/TestRoom";
 import CommentBox from "../components/CommentBox";
@@ -101,12 +101,15 @@ const comments = [
         comments: []
     },
 ]
+
+
 const Test = () => {
     const params = useParams();
+
     console.log(params.chapter)
-    console.log('testnum', params.testNum)
     const normalTests = tests.filter(item => (item.chapter == 0 || item.chapter == undefined));
     const testsByChapters = tests.filter(item => item.chapter != 0);
+
     return (
         <div className="text-lg">
             <div className="bg-[#A8DADC] text-white p-2 lg:p-5">
@@ -151,8 +154,8 @@ const Test = () => {
                             to={["/exams", test.testNum].join("/")} />)}
                     </div>
                     <p className="font-bold text-xl my-5">{`${comments.length} Comments`}</p>
-                    {comments.map(comment => 
-                    <CommentBox comment={comment} key={comment.name}/>
+                    {comments.map((comment, index) => 
+                        <CommentBox comment={comment} key={comment.name} />
                     )}
                 </div>
                 <div className="w-full md:w-1/3 min-w-60 md:pl-5 lg:pl-10 mt-5">

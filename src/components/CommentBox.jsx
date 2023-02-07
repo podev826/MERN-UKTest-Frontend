@@ -1,17 +1,36 @@
 import { useState } from "react"
 
-const CommentBox = ({ comment }) => {
+export default function CommentBox(props) {
     const [replyForm, setReplyForm] = useState(null)
+    const comment = props.comment
+    const submit = () => {
+        // TODO: create comment
+        // console.log("created comment", {
+        //     name: 
+        // })
+    }
+    const id = comment.name + Number(new Date())
     const showReplyForm = () => {
-        setReplyForm(<div className="flex flex-col">
+        setReplyForm(<form className="flex flex-col">
             <span className="text-lg font-bold my-4">{`Reply to ${comment.name} - `} <a onClick={hideReplyForm}>Cancel Reply</a></span>
-        </div>)
+            <textarea className="w-full border mb-4 p-2" required rows={8} placeholder="Comment..." name="comment"></textarea>
+            <div className="flex justify-start">
+                <input name="name" className="min-w-20 border p-2 mr-4" type="text" required placeholder="Name (requried)"/>
+                <input name="email" className="min-w-20 border p-2" type="email" required placeholder="Email (requried)"/>
+            </div>
+            <div className="content-center">
+                <input id={`saveCredential${id}`} name="saveCredential border" type="checkbox" style={{position:"relative", opacity:1}}/>
+                <label htmlFor={`saveCredential${id}`}> Save my name, email, and website in this browser for the next time I comment.</label>
+            </div>
+            <button onClick={submit} className="uppercase w-fit text-lg font-bold bg-[#A8DADC] text-white 
+            block rounded-full px-4 py-2 my-4">post comment</button>
+        </form>)
     }
     const hideReplyForm = () => {
         setReplyForm(null)
     }
     const hasChildren = comment.comments && comment.comments.length > 0
-    console.log('test', comment)
+
     return (
         <div className="flex flex-col">
             <div className="flex flex-col">
@@ -27,8 +46,8 @@ const CommentBox = ({ comment }) => {
                             <p>{comment.content}</p>
                         </div>
                         <div className="replyForm">{replyForm}</div>
-                        {hasChildren && comment.comments.map(item =>
-                            <CommentBox comment={item} />
+                        {hasChildren && comment.comments.map((item, index) =>
+                            <CommentBox key={index} comment={item} />
                         )}
                     </div>
                 </div>
@@ -37,5 +56,3 @@ const CommentBox = ({ comment }) => {
         </div>
     )
 }
-
-export default CommentBox
