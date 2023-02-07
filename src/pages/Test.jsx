@@ -102,9 +102,12 @@ const comments = [
     },
 ]
 
-
 const Test = () => {
     const params = useParams();
+
+    const submit = () => {
+        // TODO: create comment
+    }
 
     console.log(params.chapter)
     const normalTests = tests.filter(item => (item.chapter == 0 || item.chapter == undefined));
@@ -160,6 +163,20 @@ const Test = () => {
                     {comments.map((comment, index) => 
                         <CommentBox comment={comment} key={comment.name} />
                     )}
+                    <form className="flex flex-col">
+                        <span className="text-lg font-bold my-4">Leave A Comment</span>
+                        <textarea className="w-full border mb-4 p-2" required rows={4} placeholder="Comment..." name="comment"></textarea>
+                        <div className="flex justify-start">
+                            <input name="name" className="min-w-20 border p-2 mr-4" type="text" required placeholder="Name (requried)"/>
+                            <input name="email" className="min-w-20 border p-2" type="email" required placeholder="Email (requried)"/>
+                        </div>
+                        <div className="content-center">
+                            <input id={`saveCredential`} name="saveCredential border" type="checkbox" style={{position:"relative", opacity:1}}/>
+                            <label htmlFor={`saveCredential`}> Save my name, email, and website in this browser for the next time I comment.</label>
+                        </div>
+                        <button onClick={submit} className="uppercase w-fit text-lg font-bold bg-[#A8DADC] text-white 
+                        block rounded-full px-4 py-2 my-4">post comment</button>
+                    </form>
                 </div>
                 <div className="w-full md:w-1/3 min-w-60 md:pl-5 lg:pl-10 mt-5">
                     <Donate />

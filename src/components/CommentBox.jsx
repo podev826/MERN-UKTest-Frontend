@@ -5,15 +5,12 @@ export default function CommentBox(props) {
     const comment = props.comment
     const submit = () => {
         // TODO: create comment
-        // console.log("created comment", {
-        //     name: 
-        // })
     }
     const id = comment.name + Number(new Date())
     const showReplyForm = () => {
         setReplyForm(<form className="flex flex-col">
             <span className="text-lg font-bold my-4">{`Reply to ${comment.name} - `} <a onClick={hideReplyForm}>Cancel Reply</a></span>
-            <textarea className="w-full border mb-4 p-2" required rows={8} placeholder="Comment..." name="comment"></textarea>
+            <textarea className="w-full border mb-4 p-2" required rows={4} placeholder="Comment..." name="comment"></textarea>
             <div className="flex justify-start">
                 <input name="name" className="min-w-20 border p-2 mr-4" type="text" required placeholder="Name (requried)"/>
                 <input name="email" className="min-w-20 border p-2" type="email" required placeholder="Email (requried)"/>
