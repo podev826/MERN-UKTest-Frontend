@@ -73,8 +73,8 @@ export default function QuestionBox(props) {
             }
             <p className="my-4">Question <b>{index + 1}</b> of <b>{questions.length}</b></p>
             <div className="flex flex-col my-3">
-                {props.audioPath && <div>audio player</div>}
                 <p><b>{question.question}</b></p>
+                {question.audioPath&& <audio src={question.audioPath} controls autoPlay/>}
                 <div className="border bg-ukwhite p-3 my-3">
                     {question.choice.map((choice, index) =>
                         <div key={index} 

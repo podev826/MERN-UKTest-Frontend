@@ -36,7 +36,6 @@ export default function TestRoom(props) {
     let passed = (correctCount / questions.length) > 0.5
 
     useEffect(()=>{
-        console.log('index changed to', currentIndex)
         if(status==MIDDLE){
             setTimeout(() => {
                 if (time == 0) setStatus(END)

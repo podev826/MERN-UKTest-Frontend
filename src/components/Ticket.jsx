@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
 import { AiOutlineCheckCircle, AiOutlineCloseCircle, AiOutlineRightCircle } from "react-icons/ai";
 export default function Ticket({ _id, title, to, className="" }) {
-    console.log('_id', _id)
 
     const status = localStorage.getItem('testStatus')?JSON.parse(localStorage.getItem('testStatus'))[_id]:null
-    console.log('status', status)
     return (
         <Link
             _id={_id}
             title={title}
-            to={to}
+            to={to} 
             className={className + " relative w-72 border border-ukAzure rounded-lg \
                 flex flex-col items-center text-gray-800 p-4 ticket"}>
             <p className="text-xl font-bold text mb-0">{title}</p>

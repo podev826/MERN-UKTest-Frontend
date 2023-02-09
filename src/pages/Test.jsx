@@ -53,13 +53,15 @@ const test = {
             question: "What color is the sea?",
             choice: ["red", "blue", "green", "yellow"],
             answer: 1,
-            description: "The sea is blue."
+            description: "The sea is blue.",
+            audioPath:"/audio/Ring08.wav"
         },
         {
             question: "Where is the UK?",
             choice: ["Asia", "Africa", "Europe", "North America", "South America"],
             answer: 2,
-            description: "The UK is in Europe."
+            description: "The UK is in Europe.",
+            audioPath:"/audio/Ring06.wav"
         },
         {
             question: "Is the UK island?",
