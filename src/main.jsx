@@ -1,15 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
-import "./index.css";
-import "./default.css";
-import "./css/font-awesome.css";
+import Admin from "./admin/Admin";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <App/>
+    {/* <Routes>
+      <Route path="/" element={<App/>} />
+      <Route path="/admin" element={<Admin/>} />
+    </Routes> */}
     </BrowserRouter>
   </React.StrictMode>
 );
