@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IsMobile } from '../DeviceDetect';
-
+import { getChaptersWithTests } from '../../services/chapterService';
 
 // Navbar links
 const studyMaterials = [
@@ -10,103 +10,6 @@ const studyMaterials = [
   { href: '/a-modern-thriving-society', label: 'Chapter 4: A Modern, Thriving Society' },
   { href: '/the-uk-government-the-law-and-your-role', label: 'Chapter 5: The UK Government, the Law and Your Role' },
 ];
-
-// Tests Links - test
-const testGroups = [
-  { href: "", label: ['TESTS', 1, 'TO', 13].join(' ') },
-  { href: "", label: ['TESTS', 14, 'TO', 26].join(' ') },
-  { href: "", label: ['TESTS', 27, 'TO', 40].join(' ') },
-  { href: "", label: "CHAPTERS 1-2" },
-  { href: "", label: "CHAPTER 3" },
-  { href: "", label: "CHAPTER 4" },
-  { href: "", label: "CHAPTER 5" },
-]
-
-
-const tests = [];
-[{ start: 1, end: 13 }, { start: 14, end: 26 }, { start: 27, end: 40 }].forEach(item => {
-  let sublinks = [];
-  for (let index = item.start; index <= item.end; index++) {
-    sublinks.push({
-      href: "/tests/" + index,
-      label: "Test " + index
-    })
-  }
-  tests.push(sublinks)
-})
-
-// Tests Links - chapters
-tests.push([
-  { href: "/tests/1/1", label: "Test 1.2" }])
-tests.push([
-  { href: "/tests/3/1", label: "Test 3.1" },
-  { href: "/tests/3/2", label: "Test 3.2" },
-  { href: "/tests/3/3", label: "Test 3.3" },
-  { href: "/tests/3/4", label: "Test 3.4" },
-  { href: "/tests/3/5", label: "Test 3.5" },
-  { href: "/tests/3/6", label: "Test 3.6" },
-  { href: "/tests/3/7", label: "Test 3.7" },
-  { href: "/tests/3/8", label: "Test 3.8" },
-  { href: "/tests/3/9", label: "Test 3.9" },
-  { href: "/tests/3/10", label: "Test 3.10" }
-])
-tests.push([
-  { href: "/tests/4/1", label: "Test 4.1" },
-  { href: "/tests/4/2", label: "Test 4.2" },
-  { href: "/tests/4/3", label: "Test 4.3" },
-  { href: "/tests/4/4", label: "Test 4.4" },
-  { href: "/tests/4/5", label: "Test 4.5" },
-  { href: "/tests/4/6", label: "Test 4.6" },
-  { href: "/tests/4/7", label: "Test 4.7" },
-  { href: "/tests/4/8", label: "Test 4.8" },
-  { href: "/tests/4/9", label: "Test 4.9" },
-  { href: "/tests/4/10", label: "Test 4.10" },
-  { href: "/tests/4/11", label: "Test 4.11" },
-  { href: "/tests/4/12", label: "Test 4.12" },
-])
-tests.push([
-  { href: "/tests/5/1", label: "Test 5.1" },
-  { href: "/tests/5/2", label: "Test 5.2" },
-  { href: "/tests/5/3", label: "Test 5.3" },
-  { href: "/tests/5/4", label: "Test 5.4" },
-  { href: "/tests/5/5", label: "Test 5.5" },
-  { href: "/tests/5/6", label: "Test 5.6" },
-  { href: "/tests/5/7", label: "Test 5.7" },
-  { href: "/tests/5/8", label: "Test 5.8" },
-  { href: "/tests/5/9", label: "Test 5.9" },
-  { href: "/tests/5/10", label: "Test 5.10" },
-])
-
-// Exam links
-const examGroups = [
-  {
-    href: "", label: "EXAMS \n1 To 7"
-  },
-  {
-    href: "", label: "EXAMS \n8 To 16"
-  }]
-const exams = [
-  [
-    { href: "/exams/1", label: "British Citizenship\nTest 1" },
-    { href: "/exams/2", label: "British Citizenship\nTest 2" },
-    { href: "/exams/3", label: "British Citizenship\nTest 3" },
-    { href: "/exams/4", label: "British Citizenship\nTest 4" },
-    { href: "/exams/5", label: "British Citizenship\nTest 5" },
-    { href: "/exams/6", label: "British Citizenship\nTest 6" },
-    { href: "/exams/7", label: "British Citizenship\nTest 7" },
-  ],
-  [
-    { href: "/exams/8", label: "British Citizenship\nTest 8" },
-    { href: "/exams/9", label: "British Citizenship\nTest 9" },
-    { href: "/exams/10", label: "British Citizenship\nTest 10" },
-    { href: "/exams/11", label: "British Citizenship\nTest 11" },
-    { href: "/exams/12", label: "British Citizenship\nTest 12" },
-    { href: "/exams/13", label: "British Citizenship\nTest 13" },
-    { href: "/exams/14", label: "British Citizenship\nTest 14" },
-    { href: "/exams/15", label: "British Citizenship\nTest 15" },
-    { href: "/exams/16", label: "British Citizenship\nTest 16 New!" },
-  ]
-]
 
 const Linkcomponent = ({ title, link, children, relative=false }) => {
   let style = relative?"relative":"static";
@@ -139,6 +42,8 @@ const MobileLink = ({ title, link, children, className }) => {
 };
 export default function Header() {
   const [isExpanded, toggleExpansion] = React.useState(false);
+  const [examRoutes, setExamRoutes] = React.useState([]);
+  const [testRoutes, setTestRoutes] = React.useState([]);
   const isMobile = IsMobile();
 
   React.useEffect(() => {
@@ -149,6 +54,15 @@ export default function Header() {
     };
   });
 
+  React.useEffect(() => {
+    fetchOnLoad()
+  }, [])
+
+  const fetchOnLoad = async () => {
+    let { data: links} = await getChaptersWithTests();
+    setExamRoutes(links.filter(l => l.isExam));
+    setTestRoutes(links.filter(l => !l.isExam));
+  }
 
   /* Method that will fix header after a specific scrollable */
   const isSticky = () => {
@@ -193,15 +107,15 @@ export default function Header() {
               <Linkcomponent title='Tests' link='/tests'>
                 <div className='max-w-full border-t-4 border-ukAzure w-600 lg:w-1024'>
                   <ul className='flex justify-between bg-ukwhite text-base lg:text-lg text-gray-600 '>
-                    {testGroups.map((item, index) => (
-                      <ul key={index} className='w-1/6 border-l border-gray-300 flex flex-col bg-ukwhite text-gray-600 '>
+                    {testRoutes.map((item, index) => (
+                      <ul key={index} className='w-1/5 border-l border-gray-300 flex flex-col bg-ukwhite text-gray-600 '>
                         <li className='border-b border-gray-300 text-center hover:bg-white'>
-                          <div className='block text-cyan-600 w-full py-5'>{item.label}</div>
+                          <div className='block text-cyan-600 w-full py-5'>{item.name??("Chapter " + item.number)}</div>
                         </li>
-                        {tests[index].map((item, index) => (
+                        {item.tests.map((item, index) => (
                           <li key={index} className='border-b border-gray-300 text-center hover:bg-white'>
-                            <a className='block w-full py-1' href={item.href}>
-                              <i className="fa fa-caret-right mr-2"></i>  {item.label}
+                            <a className='block w-full py-1' href={`/tests/${item._id}`}>
+                              <i className="fa fa-caret-right mr-2"></i>  {"Test " + item.testNum}
                             </a>
                           </li>
                         ))}
@@ -216,23 +130,22 @@ export default function Header() {
               <Linkcomponent title='EXAMS' link='/exams' relative='true'>
                 <div className='w-full border-t-4 border-ukAzure'>
                   <ul className='flex flex-col justify-between bg-ukwhite text-base xl:text-lg text-gray-600 '>
-                    {examGroups.map((item, index) => (
+                    {examRoutes.map((item, index) => (
                       <li key={index} className='dropdown1'>
-                        <div className='block text-cyan-600 w-32 xl:w-52 text-center hover:bg-white py-1 xl:py-3'>{item.label}</div>
+                        <div className='block text-cyan-600 w-32 xl:w-52 text-center hover:bg-white py-1 xl:py-3'>{item.name??("Exam " + item.number)}</div>
+                        {item.tests.length!=0 && 
                         <div className='relative'>
                           <ul className='w-36 xl:w-44 border-t-4 border-ukAzure flex flex-col bg-ukwhite text-base xl:text-lg text-gray-600 dropdown-content1'>
-                            {exams[index].map((item, index) => (
+                            {item.tests.map((item, index) => (
                               <li key={index} className='border-b border-gray-300 bg-ukwhite px-1 xl:px-3 hover:bg-white'>
-                                {item.href ?
-                                  <a className='block w-full py-1' href={item.href}>
+                                  <a className='block w-full py-1' href={`exams/${item._id}`}>
                                     <i className="fa fa-caret-right mr-2"></i>
-                                    {item.label}
+                                    {"British Citizenship\nTest " + item.testNum}
                                   </a>
-                                  : <div className='block text-cyan-600 w-full py-5'>{item.label}</div>}
                               </li>
                             ))}
                           </ul>
-                        </div>
+                        </div>}
                       </li>
                     ))}
                   </ul>
@@ -272,11 +185,11 @@ export default function Header() {
           </MobileLink>
           <MobileLink title='Tests' link='/tests'>
             <ul className="flex flex-col text-sm w-full bg-ukwhite text-gray-600">
-              {testGroups.map((item, index) => (
-                <MobileLink key={index} title={item.label} link={item.href} className='pl-3'>
+              {testRoutes.map((item, index) => (
+                <MobileLink key={index} title={item.name} link={`/tests/chapters/${item._id}`} className='pl-3'>
                   <ul className="flex flex-col text-sm w-full bg-ukwhite text-gray-600">
-                    {tests[index].map((item, index) => (
-                      <MobileLink key={index} title={item.label} link={item.href} className='pl-3' />
+                    {item.tests.map((item, index) => (
+                      <MobileLink key={index} title={`Test ${index + 1}`} link={`/tests/${item._id}`} className='pl-3' />
                     ))}
                   </ul>
                 </MobileLink>
@@ -285,11 +198,11 @@ export default function Header() {
           </MobileLink>
           <MobileLink title='EXAMS' link='/exams'>
             <ul className="flex flex-col text-sm w-full bg-ukwhite text-gray-600">
-              {examGroups.map((item, index) => (
-                <MobileLink key={index} title={item.label} link={item.href} className='pl-3'>
+              {examRoutes.map((item, index) => (
+                <MobileLink key={index} title={item.name} link="" className='pl-3'>
                   <ul className="flex flex-col text-sm w-full bg-ukwhite text-gray-600">
-                    {exams[index].map((item, index) => (
-                      <MobileLink key={index} title={item.label} link={item.href} className='pl-3' />
+                    {item.tests.map((item, index) => (
+                      <MobileLink key={index} title={`British Citizenship\nTest ${index + 1}`} link={`/exams/${item._id}`} className='pl-3' />
                     ))}
 
                   </ul>

@@ -24,12 +24,9 @@ import NotFound from "./admin/components/notFound";
 import LoginForm from "./admin/components/loginForm";
 import Logout from "./admin/components/logout";
 
-import "./index.css";
-import "./default.css";
-import "./css/font-awesome.css";
 import AdminLayout from "./admin/AdminLayout";
 import AppLayout from "./AppLayout";
-import authService from "./admin/services/authService";
+import authService from "./services/authService";
 import QuestionForm from "./admin/components/questionForm";
 
 function PrivateRoute({ children }) {
@@ -54,49 +51,47 @@ function App() {
   const [showLoader, setshowLoader] = useState(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    fetchOnLoad()
-  }, [])
+  // useEffect(() => {
+  //   fetchOnLoad()
+  // }, [])
 
-  const fetchOnLoad = () => {
-    fetch('https://crudmern.onrender.com/api/members')
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data)
-        setTests(data)
-      }).catch(e => {
-        console.log(e)
-      })
-  }
-
-
-  useEffect(() => {
-    if (isTestCreated) {
-      setNewTest({ ...newTest, questions: questions })
-      setQuestionPushed(true)
-    }
-  }, [isTestCreated])
-
-  const handleSave = () => {
-    console.log(newTest)
-    fetch('https://crudmern.onrender.com/api/members/add', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newTest)
-    }).then(res => {
-      return res.json()
-    }).then(data => {
-      console.log(data)
-      fetchOnLoad()
-      navigate('/admin')
-    }).catch(e => {
-      console.error(e)
-    })
-  }
+  // const fetchOnLoad = () => {
+  //   fetch('https://crudmern.onrender.com/api/members')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       // console.log(data)
+  //       setTests(data)
+  //     }).catch(e => {
+  //       console.log(e)
+  //     })
+  // }
 
 
+  // useEffect(() => {
+  //   if (isTestCreated) {
+  //     setNewTest({ ...newTest, questions: questions })
+  //     setQuestionPushed(true)
+  //   }
+  // }, [isTestCreated])
+
+  // const handleSave = () => {
+  //   console.log(newTest)
+  //   fetch('https://crudmern.onrender.com/api/members/add', {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(newTest)
+  //   }).then(res => {
+  //     return res.json()
+  //   }).then(data => {
+  //     console.log(data)
+  //     fetchOnLoad()
+  //     navigate('/admin')
+  //   }).catch(e => {
+  //     console.error(e)
+  //   })
+  // }
 
   return (
     <>

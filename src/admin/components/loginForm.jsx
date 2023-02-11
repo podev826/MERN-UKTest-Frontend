@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate  } from "react-router-dom";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import auth from "../services/authService";
+import auth from "../../services/authService";
 
 class LoginForm extends Form {
   state = {

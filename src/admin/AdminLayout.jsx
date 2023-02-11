@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Navigate, Routes, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import NavBar from "./components/navBar";
-import auth from "./services/authService";
+import auth from "../services/authService";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";

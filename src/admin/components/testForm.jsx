@@ -1,8 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { getTest, saveTest, deleteQuestion } from "../services/testService";
-import { getChapters } from "../services/chapterService";
+import { getTest, saveTest, deleteQuestion } from "../../services/testService";
+import { getChapters } from "../../services/chapterService";
 import { useLocation, useParams } from "react-router-dom";
 
 const withRouter = WrappedComponent => props => {

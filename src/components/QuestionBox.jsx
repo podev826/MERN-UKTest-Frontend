@@ -52,7 +52,7 @@ export default function QuestionBox(props) {
                 <div className="flex flex-wrap justify-start border p-2 bg-ukwhite">
                     {props.questions.map((question, index) => (
                         <div key={index} className={`
-                        cursor-pointer border px-1 mx-1
+                        cursor-pointer border px-1 m-1 w-7 text-center
                         ${index == props.index && "border-sky-500"}
                         ${question.selected!==undefined?"bg-green-700"
                         :question.reviewed && "bg-yellow-500"}
@@ -76,7 +76,7 @@ export default function QuestionBox(props) {
                 <p><b>{question.question}</b></p>
                 {question.audioPath&& <audio src={question.audioPath} controls autoPlay/>}
                 <div className="border bg-ukwhite p-3 my-3">
-                    {question.choice.map((choice, index) =>
+                    {question.choices.map((choice, index) =>
                         <div key={index} 
                             className={`flex justify-start items-center ${calcColor(index)}`}>
                             <input type="radio"
