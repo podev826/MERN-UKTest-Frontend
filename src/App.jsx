@@ -54,9 +54,6 @@ function App() {
   const [showLoader, setshowLoader] = useState(false)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    fetchOnLoad()
-  }, [])
 
   const fetchOnLoad = () => {
     fetch('https://crudmern.onrender.com/api/members')
@@ -70,12 +67,6 @@ function App() {
   }
 
 
-  useEffect(() => {
-    if (isTestCreated) {
-      setNewTest({ ...newTest, questions: questions })
-      setQuestionPushed(true)
-    }
-  }, [isTestCreated])
 
   const handleSave = () => {
     console.log(newTest)
