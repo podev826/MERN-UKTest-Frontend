@@ -5,39 +5,8 @@ import TestRoom from "../components/TestRoom";
 import CommentBox from "../components/CommentBox";
 import Ticket from "../components/Ticket";
 
-import { getTests } from "../services/testService";
-
-const comments = [
-    {
-        name: "Nadeem",
-        email: "Nadeem@email.com",
-        date: "February 1, 2023 at 10:52 pm",
-        content: "I passed my test today. I only practiced exams 1-16. I finished my test in 2 minutes and as soon as I came out even the test centre people were shocked that i broke a record for finishing the test in just 2 minutes. It was just because of this website that I was able to finish it that quick. I really appreciate you for making this website. Many Thanks",
-        comments: [
-            {
-                name: "Nadeem",
-                email: "Nadeem@email.com",
-                date: "February 1, 2023 at 10:52 pm",
-                content: "I passed my test today. I only practiced exams 1-16. I finished my test in 2 minutes and as soon as I came out even the test centre people were shocked that i broke a record for finishing the test in just 2 minutes. It was just because of this website that I was able to finish it that quick. I really appreciate you for making this website. Many Thanks",
-                comments: []
-            },
-            {
-                name: "Nadeem",
-                email: "Nadeem@email.com",
-                date: "February 1, 2023 at 10:52 pm",
-                content: "I passed my test today. I only practiced exams 1-16. I finished my test in 2 minutes and as soon as I came out even the test centre people were shocked that i broke a record for finishing the test in just 2 minutes. It was just because of this website that I was able to finish it that quick. I really appreciate you for making this website. Many Thanks",
-                comments: []
-            },
-        ]
-    },    
-    {
-        name: "Abbas",
-        email: "Abbas@email.com",
-        date: "February 4, 2023 at 7:52 pm",
-        content: "Passed ALHHUMDULLILAH Today 4th February 2023 at 11:00 it only took 4 mins Best website 1 to 16 exams and little bit of from 40 tests to master it for 24/24 I have got 💯 correct answers",
-        comments: []
-    },
-]
+import { getTests, getTest } from "../services/testService";
+import { getComments, saveComment } from "../services/commentService";
 
 const Test = () => {
     const params = useParams();
@@ -45,9 +14,24 @@ const Test = () => {
     const [isLoaded, setIsloaded] =useState(false)
     const [tests, setTests] =useState([])
     const [test, setTest] =useState({})
-    const submit = () => {
-        // TODO: create comment
+    const [comments, setComments] =useState({})
+    const submit = e => {
+        e.preventDefault();
+
+        doSubmit({
+            test: params.testNum, 
+            parent: e.target.parent?.value,
+            name: e.target.name.value,
+            email: e.target.email.value,
+            comment: e.target.comment.value,
+         })
     }
+
+    const doSubmit =  async (formdata) => {
+        await saveComment(formdata);
+        await fetchOnLoad()
+        location.reload()
+    };
 
     useEffect(() => {
         fetchOnLoad()
@@ -56,12 +40,14 @@ const Test = () => {
     const fetchOnLoad = async () => {
         let { data } = await getTests();
         let tests = data.filter(l => l.chapter && !(l.chapter.isExam))
-        let test = data.find(t => t._id==params.testNum)
-        console.log(test, tests);
+        let { data:test } = await getTest(params.testNum)
+        let { data:comments } = await getComments(params.testNum)
+        console.log(comments);
 
         setExams(data.filter(l => l.chapter?.isExam));
         setTests(tests);
         setTest(test)
+        setComments(comments)
         setIsloaded(true)
       }
 
@@ -113,9 +99,9 @@ const Test = () => {
                     </div>
                     <p className="font-bold text-xl my-5">{`${comments.length} Comments`}</p>
                     {comments.map((comment, index) => 
-                        <CommentBox comment={comment} key={comment.name} />
+                        <CommentBox comment={comment} key={index} fetchOnLoad={fetchOnLoad}/>
                     )}
-                    <form className="flex flex-col">
+                    <form className="flex flex-col" onSubmit={submit}>
                         <span className="text-lg font-bold my-4">Leave A Comment</span>
                         <textarea className="w-full border mb-4 p-2" required rows={4} placeholder="Comment..." name="comment"></textarea>
                         <div className="flex justify-start">
@@ -123,10 +109,10 @@ const Test = () => {
                             <input name="email" className="min-w-20 border p-2" type="email" required placeholder="Email (requried)"/>
                         </div>
                         <div className="content-center">
-                            <input id={`saveCredential`} name="saveCredential border" type="checkbox" style={{position:"relative", opacity:1}}/>
+                            <input id={`saveCredential`} name="saveCredential" type="checkbox" style={{position:"relative", opacity:1}}/>
                             <label htmlFor={`saveCredential`}> Save my name, email, and website in this browser for the next time I comment.</label>
                         </div>
-                        <button onClick={submit} className="uppercase w-fit text-lg font-bold bg-[#A8DADC] text-white 
+                        <button type="submit" className="uppercase w-fit text-lg font-bold bg-[#A8DADC] text-white 
                         block rounded-full px-4 py-2 my-4">post comment</button>
                     </form>
                 </div>}
