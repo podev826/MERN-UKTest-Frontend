@@ -32,16 +32,6 @@ export function deleteTest(testId) {
   return http.delete(testUrl(testId));
 }
 
-export function saveQuestion(testId, question) {
-  if (question._id) {
-    const body = { ...question };
-    delete body._id;
-    return http.put(questionUrl(testId, question._id), body);
-  }
-
-  return http.post(`${apiEndpoint}/${testId}`, question);
-}
-
 export function deleteQuestion(testId, questionId) {
   return http.delete(questionUrl(testId, questionId));
 }

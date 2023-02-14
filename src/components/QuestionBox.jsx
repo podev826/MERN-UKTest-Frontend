@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { apiUrl } from "../config.json";
 
 const START = 0;
 const MIDDLE = 1;
@@ -74,7 +75,7 @@ export default function QuestionBox(props) {
             <p className="my-4">Question <b>{index + 1}</b> of <b>{questions.length}</b></p>
             <div className="flex flex-col my-3">
                 <p><b>{question.question}</b></p>
-                {question.audioPath&& <audio src={question.audioPath} controls autoPlay/>}
+                {question.audioPath&& <audio src={`${apiUrl}/questions${question.audioPath}`} controls autoPlay/>}
                 <div className="border bg-ukwhite p-3 my-3">
                     {question.choices.map((choice, index) =>
                         <div key={index} 

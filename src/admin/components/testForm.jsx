@@ -4,6 +4,7 @@ import Form from "./common/form";
 import { getTest, saveTest, deleteQuestion } from "../../services/testService";
 import { getChapters } from "../../services/chapterService";
 import { useLocation, useParams } from "react-router-dom";
+import { apiUrl } from "../../config.json";
 
 const withRouter = WrappedComponent => props => {
   const params = useParams();
@@ -106,7 +107,7 @@ class TestForm extends Form {
               <h3>Question {index + 1} </h3>
 
               <span>Question: {q.question}</span><br/>
-              <span>Audio:<a href={`${q.audioPath}`}>{q.audioPath}</a></span>
+              <span>Audio:<a href={`${apiUrl}/questions${q.audioPath}`}>{q.audioPath}</a></span>
               <ul style={{listStyle: "disc", paddingLeft:20}} >
                 {q.choices.map((c, index) => 
                   <li key={`key${index}`}>{c} {q.answer==index&&"(correct)"}</li>
