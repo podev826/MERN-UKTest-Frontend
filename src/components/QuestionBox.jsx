@@ -52,8 +52,8 @@ export default function QuestionBox(props) {
             <div className="mb-4">
                 <div className="flex flex-wrap justify-start border p-2 bg-ukwhite">
                     {props.questions.map((question, index) => (
-                        <div key={index} className={`
-                        cursor-pointer border px-1 m-1 w-7 text-center
+                        <div key={index} style={{borderWidth:1}} className={`
+                        cursor-pointer px-1 m-1 w-7 text-center
                         ${index == props.index && "border-sky-500"}
                         ${question.selected!==undefined?"bg-green-700"
                         :question.reviewed && "bg-yellow-500"}
